@@ -1,0 +1,40 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Training outputs — large files, push to HF Hub instead
+outputs/
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Test / lint cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,42 @@
+{
+  "base_model": {
+    "rouge": {
+      "rouge1": 0.2841,
+      "rouge2": 0.0923,
+      "rougeL": 0.1876
+    }
+  },
+  "finetuned_model": {
+    "rouge": {
+      "rouge1": 0.4712,
+      "rouge2": 0.2341,
+      "rougeL": 0.3854
+    }
+  },
+  "rouge1_improvement_pct": 65.8,
+  "rouge2_improvement_pct": 153.6,
+  "rougeL_improvement_pct": 105.4,
+  "examples": [
+    {
+      "id": 0,
+      "question": "What steps should I take when a pod is in CrashLoopBackOff?",
+      "reference": "1. Check pod logs: kubectl logs <pod> --previous. 2. Describe the pod: kubectl describe pod <pod> to see events and exit codes. 3. Check resource limits — OOMKilled exit code 137 means out of memory, increase limits. 4. Verify the container image exists and is pullable. 5. Check liveness probe configuration — misconfigured probes cause restart loops.",
+      "base_answer": "A CrashLoopBackOff error means the container is crashing repeatedly. You should check what is wrong with your application.",
+      "finetuned_answer": "1. Check pod logs: kubectl logs <pod> --previous to see the crash reason. 2. Describe the pod: kubectl describe pod <pod> to review events and exit codes. 3. Exit code 137 means OOMKilled — increase memory limits. 4. Verify the container image is pullable. 5. Review liveness probe settings — misconfigured probes trigger restart loops."
+    },
+    {
+      "id": 1,
+      "question": "How do I calculate error budget remaining for a 99.9% SLO?",
+      "reference": "Error budget = 1 - SLO target = 0.1% of total requests or time allowed to fail. For a 30-day window: 0.001 * 30 * 24 * 60 = 43.2 minutes of allowed downtime.",
+      "base_answer": "Error budget is the amount of downtime you are allowed.",
+      "finetuned_answer": "Error budget = 1 - 0.999 = 0.1% allowed failure. For a 30-day window: 0.001 x 30 x 24 x 60 = 43.2 minutes of allowed downtime. Monitor burn rate — if burn rate exceeds 1 you are consuming budget faster than it replenishes."
+    }
+  ],
+  "model_info": {
+    "base_model": "microsoft/Phi-3-mini-4k-instruct",
+    "adapter": "amarshiv86/p07-sre-lora-phi3",
+    "lora_rank": 16,
+    "training_epochs": 3,
+    "training_examples": 15
+  }
+}
