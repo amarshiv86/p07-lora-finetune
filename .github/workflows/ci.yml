@@ -21,7 +21,9 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install datasets rouge-score pytest pytest-asyncio ruff
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install transformers datasets rouge-score peft accelerate
+          pip install pytest pytest-asyncio ruff
 
       - name: Verify pytest available
         run: pytest --version
