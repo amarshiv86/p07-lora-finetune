@@ -1,8 +1,5 @@
 import json
 import os
-import tempfile
-
-import pytest
 
 
 class TestDataLoading:
